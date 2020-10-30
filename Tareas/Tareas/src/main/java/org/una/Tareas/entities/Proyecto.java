@@ -21,7 +21,7 @@ public class Proyecto implements Serializable {
     private Long id;
 
     @Column(length = 50, name = "nombre")
-    private String titulo;
+    private String nombre;
 
     @Column(length = 100 ,name="objetivo")
     private String objetivo;
@@ -31,9 +31,11 @@ public class Proyecto implements Serializable {
     private Boolean estado;
 
 
-    private static final long serialVersionUID = 1L;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "proyecto", fetch = FetchType.LAZY)
     private List<Tarea> tareas = new ArrayList<>();
+
+    private static final long serialVersionUID = 1L;
 
 
 }

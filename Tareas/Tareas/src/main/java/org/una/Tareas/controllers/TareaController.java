@@ -43,4 +43,26 @@ public class TareaController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PutMapping("/update")
+    @ResponseBody
+    public ResponseEntity<?> update(@RequestBody TareaDTO tarea) {
+        try {
+            TareaDTO result = tareaService.update(tarea);
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/delete/{id}")
+    @ResponseBody
+    public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
+        try {
+            tareaService.delete(id);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(ex, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
