@@ -1,9 +1,7 @@
 package org.una.Tareas.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
+import org.una.Tareas.entities.Proyecto;
 
 import java.util.Date;
 
@@ -20,4 +18,7 @@ public class TareaDTO {
     Long importancia;
     Long urgencia;
     Long porcentajeAvance;
+    @Setter(AccessLevel.NONE)
+    ProyectoDTO proyecto ;
+
 }

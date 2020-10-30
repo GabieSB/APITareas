@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.una.Tareas.dto.ProyectoDTO;
+import org.una.Tareas.dto.TareaDTO;
 import org.una.Tareas.services.IProyectoService;
 
 import java.util.List;
@@ -31,6 +32,20 @@ public class ProyectoController {
         }
     }
 
+    @GetMapping("getByPorcentajeTareas/{inicio}/{fin}")
+    @ResponseBody
+    public ResponseEntity<?> findByPorcentajeTareasBetween(@PathVariable(value = "inicio") long inicio,@PathVariable(value = "fin") long fin ) {
+        try {
+            List<ProyectoDTO> result = proyectoService.getByPorcentajeTareasBetween(inicio,fin);
+            if (!result.isEmpty()) {
+                return new ResponseEntity<>(result, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("Sin resultados", HttpStatus.NO_CONTENT);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(ex, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
     @PostMapping("/create")
     @ResponseBody
@@ -40,6 +55,28 @@ public class ProyectoController {
             return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/update")
+    @ResponseBody
+    public ResponseEntity<?> update(@RequestBody ProyectoDTO proyecto) {
+        try {
+            ProyectoDTO result = proyectoService.update(proyecto);
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/delete/{id}")
+    @ResponseBody
+    public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
+        try {
+            proyectoService.delete(id);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(ex, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

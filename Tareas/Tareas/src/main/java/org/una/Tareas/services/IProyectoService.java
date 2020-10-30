@@ -9,7 +9,15 @@ public interface IProyectoService {
 
     ProyectoDTO create(ProyectoDTO clienteDTO);
 
+    ProyectoDTO update(ProyectoDTO clienteDTO);
+
+    void delete(long id);
+
     List<ProyectoDTO> getByEstado(boolean estado);
+
+    List<ProyectoDTO> getByPorcentajeTareasBetween(long porcentajeInicio, long porcentajeFinal);
+
+
 
 
 }

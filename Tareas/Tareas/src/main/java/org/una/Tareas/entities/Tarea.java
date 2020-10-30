@@ -21,16 +21,11 @@ public class Tarea implements Serializable {
     @Column(length = 50, name = "descripcion")
     private String descripcion;
 
-    @Column(name="objetivo")
-    private String objetivo;
-
     @Column(name = "fecha_inicio")
     @Temporal(TemporalType.TIMESTAMP)
-    @Setter(AccessLevel.NONE)
     private Date fechaInicio;
 
     @Column(name = "fecha_finalizacion")
-    @Setter(AccessLevel.NONE)
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaFinalizacion;
 
