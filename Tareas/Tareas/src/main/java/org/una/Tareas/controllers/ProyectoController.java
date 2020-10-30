@@ -32,20 +32,6 @@ public class ProyectoController {
         }
     }
 
-    @GetMapping("getByPorcentajeTareas/{inicio}/{fin}")
-    @ResponseBody
-    public ResponseEntity<?> findByPorcentajeTareasBetween(@PathVariable(value = "inicio") long inicio,@PathVariable(value = "fin") long fin ) {
-        try {
-            List<ProyectoDTO> result = proyectoService.getByPorcentajeTareasBetween(inicio,fin);
-            if (!result.isEmpty()) {
-                return new ResponseEntity<>(result, HttpStatus.OK);
-            }
-            return new ResponseEntity<>("Sin resultados", HttpStatus.NO_CONTENT);
-        } catch (Exception ex) {
-            return new ResponseEntity<>(ex, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
 
     @PostMapping("/create")
     @ResponseBody

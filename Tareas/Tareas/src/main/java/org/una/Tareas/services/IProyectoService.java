@@ -15,7 +15,7 @@ public interface IProyectoService {
 
     List<ProyectoDTO> getByEstado(boolean estado);
 
-    List<ProyectoDTO> getByPorcentajeTareasBetween(long porcentajeInicio, long porcentajeFinal);
+
 
 
 

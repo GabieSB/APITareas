@@ -37,15 +37,6 @@ public class ProyectoServiceImplementation implements IProyectoService {
 
     }
 
-    @Override
-    @Transactional(readOnly = true)
-    public List<ProyectoDTO> getByPorcentajeTareasBetween(long porcentajeInicio, long porcentajeFinal) {
-        Optional<List<Proyecto>> result = proyectoRepository.findByTareasPorcentajeAvanceBetween(porcentajeInicio,porcentajeFinal);
-        if (result.isPresent()) {
-            return MapperUtils.DtoListFromEntityList(result.get(), ProyectoDTO.class);
-        }
-        return new ArrayList();
-    }
 
     @Override
     @Transactional
